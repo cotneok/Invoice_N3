@@ -1,8 +1,11 @@
-#require_relative 'modules/saveable'
-#require_relative 'product'
-#require_relative 'company'
+require_relative 'modules/saveable'
+require_relative 'models/product'
+require_relative 'models/company'
 require_relative 'readcsv'
-require_relative 'models/price_calculator'
+require_relative 'price_calculator'
+require_relative 'generate_id'
+require_relative 'models/invoice'
+require_relative 'modules/saveable'
 
 puts "shemoiyvane myidveli"
 buyer = gets.chomp
@@ -22,14 +25,19 @@ end
 buyerComp = Company.new(buyer)
 sellerComp = Company.new('Vabaco')
 
-readcsv = ReadCsv.new("data.csv",products)
+readcsv = ReadCsv.new('data.csv',products)
 products_arr = readcsv.read_csv_data
 
-generateid = Generateid.new("id_storage.txt")
-id = generateid.readtxt
+generateid = Generateid.new('C:\Users\Giorgi\Desktop\Vabako\Invoice-v2-master\id_storage.txt')
+generateid.readtxt
+id = generateid.id
 generateid.writetext
 
-price = CalculatePrice.price_with_vat(products_arr)
-vat = CalculatePrice.vat_sum(products_arr)
+calculate = CalculatePrice.new(products_arr, products)
+price = calculate.price_with_vat(products_arr)
+puts price
+vat = calculate.vat(products_arr)
+puts vat
 
-invoice = Invoice.new(id,buyerComp,sellerComp,products_arr, price, vat)
+invoice = Invoice.new(id,buyerComp,sellerComp,products_arr,price,vat,products)
+Saveable.save_as_pdf(invoice.to_s,id)

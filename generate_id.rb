@@ -1,6 +1,7 @@
 class Generateid
 	attr_reader :id
-   def initialize(txt_file_path)
+
+	 def initialize(txt_file_path)
       @txt_file_path = txt_file_path
    end
 
@@ -8,7 +9,6 @@ class Generateid
     	File.open(@txt_file_path, 'r') do |text|
     		@id = text.read.chomp.to_i
     	end
-			@id
     end
 
 	def writetext

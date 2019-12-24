@@ -2,17 +2,17 @@ require 'csv'
 require_relative 'models/product'
 
 class ReadCsv
-	attr_reader :product_array
+	attr_reader :file_path
 	def initialize(file_path, input_hash)
 		@file_path = file_path
 		@product_array = []
-		@input_hash
+		@input_hash = input_hash
 	end
 
 	def read_csv_data
-		CSV.foreach(file_path, headers: true) do |row|
+		CSV.foreach('C:\Users\Giorgi\Desktop\Vabako\Invoice-v2-master\data.csv', headers: true) do |row|
 			if @input_hash[row["id"]]
-				@product_array << Product.new(row["id"], row["name"], row["description"], row["price"])
+				@product_array << Product.new(row["id"], row["name"], row["desc"], row["price"])
 			end
 		end
 		@product_array
