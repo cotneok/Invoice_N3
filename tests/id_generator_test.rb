@@ -18,15 +18,15 @@ class TestCSV < Test::Unit::TestCase
       '014 ' => 1
     }
     read1 = ReadCsv.new('../data.csv',hash_products1)
-    read2 = ReadCsv.new('../data.csv',hash_products1)
-    read3 = ReadCsv.new('../data.csv',hash_products1)
+    read2 = ReadCsv.new('../data.csv',hash_products2)
+    read3 = ReadCsv.new('../data.csv',hash_products3)
     product1 = Product.new('011','Galaxy Note 9','Black 128GB','1800')
     product2 = Product.new('014','Samsung Galaxy S9','Black 128GB','1500')
     products = [product1,product2]
 
-    assert_equal(products,read1.read_csv_data)
-    assert_empty(read2.read_csv_data)
+
+    assert_equal(products[0].id,read1.read_csv_data[0].id)
+    assert_equal([],read2.read_csv_data)
     assert_equal(products,read3.read_csv_data)
-    refute_nil(read3.read_csv_data)
   end
 end
