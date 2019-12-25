@@ -10,9 +10,9 @@ class ReadCsv
 	end
 
 	def read_csv_data
-		CSV.foreach('C:\Users\Giorgi\Desktop\Vabako\Invoice-v2-master\data.csv', headers: true) do |row|
+		CSV.foreach(@file_path, headers: true) do |row|
 			if @input_hash[row["id"]]
-				@product_array << Product.new(row["id"], row["name"], row["desc"], row["price"])
+				@product_array << Product.new(row["id"], row["product"], row["description"], row["price"])
 			end
 		end
 		@product_array

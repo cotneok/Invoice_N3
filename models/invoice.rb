@@ -4,8 +4,8 @@ class Invoice
 
 	def initialize(id, buyer, seller, products, price, vat, hash_products)
 		@id = id
-		@buyer = buyer
-		@seller = seller
+		@buyer = buyer.to_s
+		@seller = seller.to_s
 		@products = products
 		@price = price
 		@vat = vat
