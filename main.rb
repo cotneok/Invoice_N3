@@ -25,18 +25,18 @@ end
 buyerComp = Company.new(buyer)
 sellerComp = Company.new('Vabaco')
 
-readcsv = ReadCsv.new('C:\Users\Giorgi\Desktop\Vabako\Invoice-v2-master\data.csv',products)
+readcsv = ReadCsv.new('data.csv',products)
 products_arr = readcsv.read_csv_data
 
-generateid = Generateid.new('C:\Users\Giorgi\Desktop\Vabako\Invoice-v2-master\id_storage.txt')
+generateid = Generateid.new('id_storage.txt')
 generateid.readtxt
 id = generateid.id
 generateid.writetext
 
 calculate = CalculatePrice.new(products_arr, products)
-price = calculate.price_with_vat(products_arr)
+price = calculate.price_with_vat(products_arr, products)
 puts price
-vat = calculate.vat(products_arr)
+vat = calculate.vat(products_arr, products)
 puts vat
 
 invoice = Invoice.new(id,buyerComp,sellerComp,products_arr,price,vat,products)

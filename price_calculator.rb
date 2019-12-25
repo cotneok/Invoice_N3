@@ -8,18 +8,18 @@ class CalculatePrice
     @hash_products = hash_products
   end
 
-  def price_with_vat(products)
+  def price_with_vat(products, hash_products)
     sum = 0
     products.each do |product|
-      sum += (product.price.to_f  + calculate_tax(product.price).to_f) * @hash_products[product.id].to_f
+      sum += (product.price.to_f * hash_products[product.id].to_f + calculate_tax(product.price).to_f * hash_products[product.id].to_f)
     end
     sum
   end
 
-  def vat(products)
+  def vat(products, hash_products)
     vat_sum = 0
     products.each do |product|
-      vat_sum += calculate_tax(product.price).to_f * @hash_products[product.id].to_f
+      vat_sum += calculate_tax(product.price).to_f * hash_products[product.id].to_f
     end
     vat_sum
   end

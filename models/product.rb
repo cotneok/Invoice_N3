@@ -2,10 +2,10 @@ class Product
 
 	attr_accessor :id, :name, :description, :price
 
-	def initialize(id, name, decription, price)
+	def initialize(id, name, description, price)
 		@id = id
 		@name = name
-		@decription = description
+		@description = description
 		@price = price
 	end
 end
