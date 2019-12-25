@@ -17,6 +17,8 @@ puts 'If you want to exit please type \'exit\' or empty line'
 while true
 	line = gets.chomp
 	splited_array = line.split(',')
+	splited_array[0] = splited_array[0].to_s
+	splited_array[1] = splited_array[1].to_s
 	products[splited_array[0].gsub(/ /, "")] = splited_array[1].gsub(/ /, "")
 	break if line.empty? or line == 'exit'
 	p products
