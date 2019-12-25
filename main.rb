@@ -7,7 +7,7 @@ require_relative 'generate_id'
 require_relative 'models/invoice'
 require_relative 'modules/saveable'
 
-puts "shemoiyvane myidveli"
+puts "Type buyer:"
 buyer = gets.chomp
 
 products = {}
@@ -17,7 +17,7 @@ puts 'If you want to exit please type \'exit\' or empty line'
 while true
 	line = gets.chomp
 	splited_array = line.split(',')
-	products[splited_array[0]] = splited_array[1]
+	products[splited_array[0].gsub(/ /, "")] = splited_array[1].gsub(/ /, "")
 	break if line.empty? or line == 'exit'
 	p products
 end
